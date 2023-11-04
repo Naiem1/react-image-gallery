@@ -1,26 +1,32 @@
-/* .image {
-  background-color: aqua;
-} */
 
-/* .checkbox-input:hover  {
-  background: black
-} */
 
-/* .drop {
-  position: absolute;
+.image-container {
   width: 100%;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #000000ab;
-} */
+  height: 100%;
+}
 
-/* .b:hover,
-.image:hover  {
-  background-color: antiquewhite !important;
-} */
+.image {
+  width: 100%;
+  height: 100%;
+}
 
+.checkbox-input {
+  display: none;
+}
 
+.image-container:hover .image {
+  background: #82828290;
+  border-radius: 3px;
+}
 
+.image-container:hover .checkbox-input {
+  display: block;
+}
+
+.show-image {
+  display: none !important;
+}
+
+.image-container:hover .show-image {
+  display: block !important;
+}

@@ -23,15 +23,13 @@ const Item = forwardRef(
     };
 
     return (
-      <div style={inlineStyles}>
+      <div style={inlineStyles} className="image-container">
         <div
           ref={ref}
           {...props}
           style={{ width: '100%', height: '100%' }}
           className="image"
-        >
-          
-        </div>
+        ></div>
 
         <div
           style={{
@@ -43,7 +41,7 @@ const Item = forwardRef(
           }}
           className="checkbox-input"
         >
-          <Checkbox onChange={() => console.log(index)} />
+          <Checkbox className="bg-white" onChange={() => console.log(index)} />
         </div>
         <div
           style={{
@@ -52,13 +50,14 @@ const Item = forwardRef(
             zIndex: 200,
             top: '0',
             right: '0',
+            fontSize: '25px',
+            padding: '5px'
           }}
         >
-          <button className="btn btn-sm icon-btn" onClick={() => alert('done')}>
+          <button className="btn btn-sm icon-btn show-image" onClick={() => alert('done')}>
             <HiViewfinderCircle />
           </button>
         </div>
-        {/* <div></div> */}
       </div>
     );
   }

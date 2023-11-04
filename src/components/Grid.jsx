@@ -3,7 +3,7 @@ const Grid = ({ children, columns }) => {
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${5}, 1fr)`,
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gridGap: 10,
         padding: 10,
       }}
