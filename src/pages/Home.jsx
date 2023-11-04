@@ -1,9 +1,11 @@
 import Header from "../components/header/Header"
+import Gallery from "./Gallery"
 
 const Home = () => {
   return (
-    <div>
-      <Header/>
+    <div className="w-[97%]">
+      <Header />
+      <Gallery/>
     </div>
   )
 }
