@@ -11,5 +11,4 @@ const Checkbox = ({ checked, onChange }) => {
   );
 };
 
-// btn btn-xs sm:btn-sm md:btn-md lg:btn-lg
 export default Checkbox;
