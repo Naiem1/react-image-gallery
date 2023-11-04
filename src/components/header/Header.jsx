@@ -1,29 +1,23 @@
+import { MdDelete } from 'react-icons/md';
+import Checkbox from '../shared/Checkbox';
+
 const Header = () => {
   return (
-    <div className="navbar bg-base-100 border border-b-gray-300">
-      <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <div className="navbar h-[10px] bg-base-100  border border-b-gray-300  rounded-tl-lg rounded-tr-lg">
+      <div className="flex-1 items-center">
+        <a className="btn btn-ghost normal-case text-xl">Gallery</a>
+
+        <Checkbox />
+        <h4 className="font-bold">3 item selected</h4>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Link</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2 bg-base-100">
-                <li>
-                  <a>Link 1</a>
-                </li>
-                <li>
-                  <a>Link 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-        </ul>
-      </div>
+
+      <button className="btn btn-outline btn-error btn-xs sm:btn-sm md:btn-md">
+        Delete
+        <span className="text-xl">
+          <MdDelete />
+        </span>
+      </button>
+      <div className="flex-none"></div>
     </div>
   );
 };
