@@ -71,7 +71,7 @@ const ImageItem = forwardRef(
             fontSize: '25px',
             padding: '5px',
           }}
-          className={`show-image-icon `}
+          className={`show-image-icon`}
         
         >
           <button
