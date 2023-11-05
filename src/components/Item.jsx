@@ -1,12 +1,24 @@
 import { forwardRef } from 'react';
 import { HiViewfinderCircle } from 'react-icons/hi2';
+import { useSelector } from 'react-redux';
 import './../styles.css';
 import Checkbox from './shared/Checkbox';
-import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/display-name
 const Item = forwardRef(
-  ({ id, handleImageSelection, withOpacity, isDragging, url, style, index, ...props }, ref) => {
+  (
+    {
+      id,
+      handleImageSelection,
+      withOpacity,
+      isDragging,
+      url,
+      style,
+      index,
+      ...props
+    },
+    ref
+  ) => {
     const inlineStyles = {
       transformationOrigin: '0, 0',
       height: index === 0 ? 410 : 200,
@@ -23,7 +35,7 @@ const Item = forwardRef(
       ...style,
     };
 
-    const selectedImages = useSelector(state => state.image.selectedImages);
+    const selectedImages = useSelector((state) => state.image.selectedImages);
 
     return (
       <div style={inlineStyles} className="image-container">
@@ -31,25 +43,21 @@ const Item = forwardRef(
           ref={ref}
           {...props}
           style={{ width: '100%', height: '100%' }}
-          className="image"
+          className={`image ${
+            selectedImages.includes(id) ? 'checked-overlay' : null
+          }`}
         ></div>
 
         <div
-          style={{
-            position: 'absolute',
-            with: '100%',
-            zIndex: 200,
-            top: 0,
-            left: 0,
-          }}
-          className="checkbox-input"
+          className={`absolute w-full z-[200] top-0 left-0 checkbox-input ${
+            selectedImages.includes(id) ? 'block' : 'hidden'
+          }`}
         >
           <Checkbox
             className="bg-white"
             checked={selectedImages.includes(id)}
             onChange={() => handleImageSelection(id)}
           />
-
         </div>
         <div
           style={{
@@ -61,9 +69,10 @@ const Item = forwardRef(
             fontSize: '25px',
             padding: '5px',
           }}
+          className={`show-image-icon `}
         >
           <button
-            className="btn btn-sm icon-btn show-image"
+            className={`btn btn-primary text-white btn-sm icon-btn  `}
             onClick={() => alert('done')}
           >
             <HiViewfinderCircle />

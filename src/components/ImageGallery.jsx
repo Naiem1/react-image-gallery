@@ -15,12 +15,15 @@ import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from './Grid';
 import SortableItem from './SortableItem';
+import { setSelectedImages } from '../store/features/imageSlice';
 
 const ImageGallery = () => {
   const images = useSelector((state) => state.image.images);
   const [items, setItems] = useState([...images]);
-  // const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
+  const selectedImages = useSelector(state => state.image.selectedImages);
+
   const [activeId, setActiveId] = useState(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
@@ -46,9 +49,13 @@ const ImageGallery = () => {
   }, []);
 
   const handleImageSelection = (id) => {
-   
+    console.log('inside-handler', id)
+    dispatch(setSelectedImages(id));
   };
 
+  
+  console.log(selectedImages);
+  
   return (
     <DndContext
       sensors={sensors}
