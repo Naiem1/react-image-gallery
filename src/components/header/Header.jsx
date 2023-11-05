@@ -10,7 +10,7 @@ const Header = () => {
   const { clearSelectedHandler, onDeleteImageHandler } = useHeader(dispatch);
 
   return (
-    <div className="navbar h-[10px] bg-base-100  border border-b-gray-300  rounded-tl-lg rounded-tr-lg">
+    <div className="navbar header">
       <div className="flex-1 items-center">
         <a className="btn btn-ghost normal-case text-xl">Gallery</a>
         {selectedImages.length > 0 && (

@@ -3,31 +3,9 @@ import { wrap } from 'popmotion';
 import { useState } from 'react';
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-const variants = {
-  enter: (direction) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    };
-  },
-};
+import { swipeConfidenceThreshold, swipePower, variants } from '../utils/carousel';
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset, velocity) => {
-  return Math.abs(offset) * velocity;
-};
+
 
 const Carousel = () => {
   const currentImageIndex = useSelector((state) => state.image.imageIndex);
@@ -77,13 +55,13 @@ const Carousel = () => {
         </AnimatePresence>
       </div>
       <div
-        className="next text-[50px]  fixed text-black top-1/2 left-2  cursor-pointer z-99999 rotate-180 hover:opacity-70"
+        className="next"
         onClick={() => paginate(-1)}
       >
         <BsArrowRightSquareFill />
       </div>
       <div
-        className="prev text-[50px]  fixed text-black top-1/2 cursor-pointer right-2 z-99999 rotate-180 hover:opacity-70"
+        className="prev"
         onClick={() => paginate(1)}
       >
         <BsArrowLeftSquareFill />

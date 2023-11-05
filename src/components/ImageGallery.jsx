@@ -35,6 +35,9 @@ const ImageGallery = () => {
     dispatch(open());
     dispatch(setImageIndex(id));
   };
+
+
+
   return (
     <DndContext
       sensors={sensors}
@@ -43,7 +46,7 @@ const ImageGallery = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <SortableContext items={items} strategy={rectSortingStrategy}>
+      <SortableContext items={images} strategy={rectSortingStrategy}>
         <Grid>
           {items.map((image, index) => (
             <SortableImage
