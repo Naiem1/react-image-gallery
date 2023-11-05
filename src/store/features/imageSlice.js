@@ -26,11 +26,12 @@ const imageSlice = createSlice({
     },
 
     setSelectedImages: (state, action) => {
+      console.log(action.payload);
       state.selectedImages.includes(action.payload)
         ? (state.selectedImages = state.selectedImages.filter(
             (image) => image !== action.payload
           ))
-        : (state.selectedImages = action.payload);
+        : (state.selectedImages.push(action.payload));
     },
     clearSelectedImages: (state) => {
       state.selectedImages = [];
