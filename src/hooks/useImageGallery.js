@@ -37,7 +37,7 @@ const useImageGallery = (imagesData, dispatch, arrayMove) => {
 
 
 
-  console.log('[useImageGallery]', images);
+
   return {
     images,
     handleDragStart,
