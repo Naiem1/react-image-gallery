@@ -5,12 +5,13 @@ import './../styles.css';
 import Checkbox from './shared/Checkbox';
 
 // eslint-disable-next-line react/display-name
-const Item = forwardRef(
+const ImageItem = forwardRef(
   (
     {
       id,
       handleImageSelection,
       handleToggleOpen,
+      withOpacity,
       url,
       style,
       index,
@@ -41,7 +42,8 @@ const Item = forwardRef(
         <div
           ref={ref}
           {...props}
-          className={`image  width: '100%', height: '100%' ${
+          style={{ width: '100%', height: '100%' }}
+          className={`image ${
             selectedImages.includes(id) ? 'checked-overlay' : null
           }`}
         ></div>
@@ -83,4 +85,4 @@ const Item = forwardRef(
   }
 );
 
-export default Item;
+export default ImageItem;
