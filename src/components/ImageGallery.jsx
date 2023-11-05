@@ -13,7 +13,7 @@ import {
 } from '@dnd-kit/sortable';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedImages } from '../store/features/imageSlice';
+import { setImageIndex, setSelectedImages } from '../store/features/imageSlice';
 import Grid from './Grid';
 import SortableItem from './SortableItem';
 import { open, toggleState } from '../store/features/toggleSlice';
@@ -60,6 +60,7 @@ const ImageGallery = () => {
   const toggleOpen = useSelector(state => state.toggle);
 
   const handleToggleOpen = (id) => {
+    dispatch(setImageIndex(id));
     dispatch(open())
   }
 
