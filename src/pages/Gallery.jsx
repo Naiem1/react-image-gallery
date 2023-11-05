@@ -2,7 +2,7 @@ import ImageGallery from '../components/ImageGallery';
 
 const Gallery = () => {
   return (
-    <div className="h-[88vh] w-full bg-white shadow-md overflow-auto rounded-bl-lg rounded-br-lg">
+    <div className="gallery">
       <ImageGallery />
     </div>
   );

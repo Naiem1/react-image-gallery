@@ -11,9 +11,6 @@ const imageSlice = createSlice({
   name: 'image',
   initialState,
   reducers: {
-    getImages: (state) => {
-      return state;
-    },
     setImages: (state, action) => {
       state.images = action.payload;
     },
@@ -22,12 +19,8 @@ const imageSlice = createSlice({
         (image) => !state.selectedImages.includes(image)
       );
     },
-    getSelectedImages: (state) => {
-      return state;
-    },
 
     setSelectedImages: (state, action) => {
-      console.log(action.payload);
       state.selectedImages.includes(action.payload)
         ? (state.selectedImages = state.selectedImages.filter(
             (image) => image !== action.payload
@@ -53,12 +46,10 @@ const imageSlice = createSlice({
 
 export const {
   getImages,
-  setImages,
   setSelectedImages,
-  getSelectedImages,
   clearSelectedImages,
   deleteImages,
   setImageIndex,
-  resetImageIndex
+  resetImageIndex,
 } = imageSlice.actions;
 export default imageSlice.reducer;
