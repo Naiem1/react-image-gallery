@@ -1,8 +1,8 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import Item from './Item';
+import ImageItem from './ImageItem';
 
-const SortableItem = (props) => {
+const SortableImage = (props) => {
   const {
     isDragging,
     attributes,
@@ -17,9 +17,8 @@ const SortableItem = (props) => {
     transition: transition,
   };
 
-
   return (
-    <Item
+    <ImageItem
       ref={setNodeRef}
       style={style}
       withOpacity={isDragging}
@@ -30,4 +29,4 @@ const SortableItem = (props) => {
   );
 };
 
-export default SortableItem;
+export default SortableImage;

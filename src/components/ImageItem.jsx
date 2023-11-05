@@ -5,19 +5,22 @@ import './../styles.css';
 import Checkbox from './shared/Checkbox';
 
 // eslint-disable-next-line react/display-name
-const Item = forwardRef(
+const ImageItem = forwardRef(
   (
     {
       id,
       handleImageSelection,
       handleToggleOpen,
       url,
+      withOpacity,
       style,
       index,
       ...props
     },
     ref
   ) => {
+    const selectedImages = useSelector((state) => state.image.selectedImages);
+
     const inlineStyles = {
       transformationOrigin: '0, 0',
       height: index === 0 ? 410 : 200,
@@ -34,7 +37,6 @@ const Item = forwardRef(
       ...style,
     };
 
-    const selectedImages = useSelector((state) => state.image.selectedImages);
 
     return (
       <div style={inlineStyles} className="image-container">
@@ -83,4 +85,4 @@ const Item = forwardRef(
   }
 );
 
-export default Item;
+export default ImageItem;

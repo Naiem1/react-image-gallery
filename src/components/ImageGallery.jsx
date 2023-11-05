@@ -11,62 +11,30 @@ import {
   arrayMove,
   rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setImageIndex, setSelectedImages } from '../store/features/imageSlice';
+import useImageGallery from '../hooks/useImageGallery';
+import { setImageIndex } from '../store/features/imageSlice';
+import { open } from '../store/features/toggleSlice';
 import Grid from './Grid';
-import SortableItem from './SortableItem';
-import { open, toggleState } from '../store/features/toggleSlice';
+import SortableImage from './SortableImage';
 
 const ImageGallery = () => {
   const images = useSelector((state) => state.image.images);
-  const [items, setItems] = useState([]);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setItems([...images]);
-  }, [images]);
-
-  const [activeId, setActiveId] = useState(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
-  const handleDragStart = useCallback((event) => {
-    setActiveId(event.active.id);
-  }, []);
-  const handleDragEnd = useCallback((event) => {
-    const { active, over } = event;
-
-    if (active.id !== over?.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
-
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-
-    setActiveId(null);
-  }, []);
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null);
-  }, []);
-
-  const handleImageSelection = (id) => {
-    console.log('inside-handler', id);
-    dispatch(setSelectedImages(id));
-  };
-
-
-  const toggleOpen = useSelector(state => state.toggle);
+  const {
+    images: items,
+    handleDragStart,
+    handleDragEnd,
+    handleDragCancel,
+    handleImageSelection,
+  } = useImageGallery(images, dispatch, arrayMove);
 
   const handleToggleOpen = (id) => {
+    dispatch(open());
     dispatch(setImageIndex(id));
-    dispatch(open())
-  }
-
-  console.log(toggleOpen);
-
-
+  };
   return (
     <DndContext
       sensors={sensors}
@@ -78,7 +46,7 @@ const ImageGallery = () => {
       <SortableContext items={items} strategy={rectSortingStrategy}>
         <Grid>
           {items.map((image, index) => (
-            <SortableItem
+            <SortableImage
               key={image}
               url={image}
               id={image}
