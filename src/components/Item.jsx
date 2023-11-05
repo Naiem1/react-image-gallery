@@ -10,6 +10,7 @@ const Item = forwardRef(
     {
       id,
       handleImageSelection,
+      handleToggleOpen,
       withOpacity,
       isDragging,
       url,
@@ -70,13 +71,15 @@ const Item = forwardRef(
             padding: '5px',
           }}
           className={`show-image-icon `}
+        
         >
           <button
             className={`btn btn-primary text-white btn-sm icon-btn  `}
-            onClick={() => alert('done')}
+            onClick={() => handleToggleOpen(id)}
           >
             <HiViewfinderCircle />
           </button>
+        
         </div>
       </div>
     );
