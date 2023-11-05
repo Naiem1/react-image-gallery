@@ -18,8 +18,8 @@ const Header = () => {
   };
 
   const clearSelectedHandler = () => {
-    dispatch(clearSelectedImages())
-  }
+    dispatch(clearSelectedImages());
+  };
 
   console.log('[Header.js]', selectedImages);
   return (
@@ -29,14 +29,17 @@ const Header = () => {
 
         {selectedImages.length > 0 && (
           <div className="flex items-center">
-              <Checkbox checked={selectedImages.length > 0 ? 'checked': null} onChange={clearSelectedHandler} />
+            <Checkbox
+              checked={selectedImages.length > 0 ? 'checked' : null}
+              onChange={clearSelectedHandler}
+            />
             <h4 className="text-lg font-bold">
               {selectedImages.length} File selected
             </h4>
           </div>
         )}
       </div>
-<Backdrop/>
+      <Backdrop />
       {selectedImages.length > 0 ? (
         <button
           onClick={onDeleteImageHandler}
