@@ -21,6 +21,7 @@ const ImageItem = forwardRef(
   ) => {
     const selectedImages = useSelector((state) => state.image.selectedImages);
 
+
     const inlineStyles = {
       transformationOrigin: '0, 0',
       height: index === 0 ? 410 : 200,
@@ -43,6 +44,7 @@ const ImageItem = forwardRef(
         <div
           ref={ref}
           {...props}
+
           className={`image  width: '100%', height: '100%' ${
             selectedImages.includes(id) ? 'checked-overlay' : null
           }`}
