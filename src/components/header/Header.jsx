@@ -1,32 +1,18 @@
 import { MdDelete } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  clearSelectedImages,
-  deleteImages,
-} from '../../store/features/imageSlice';
+import useHeader from '../../hooks/userHeader';
 import Checkbox from '../shared/Checkbox';
 import Backdrop from '../shared/UI/Backdrop';
 
 const Header = () => {
   const selectedImages = useSelector((state) => state.image.selectedImages);
   const dispatch = useDispatch();
+  const { clearSelectedHandler, onDeleteImageHandler } = useHeader(dispatch);
 
-  const onDeleteImageHandler = () => {
-    console.log('deleted');
-    dispatch(deleteImages());
-    dispatch(clearSelectedImages());
-  };
-
-  const clearSelectedHandler = () => {
-    dispatch(clearSelectedImages());
-  };
-
-  console.log('[Header.js]', selectedImages);
   return (
     <div className="navbar h-[10px] bg-base-100  border border-b-gray-300  rounded-tl-lg rounded-tr-lg">
       <div className="flex-1 items-center">
         <a className="btn btn-ghost normal-case text-xl">Gallery</a>
-
         {selectedImages.length > 0 && (
           <div className="flex items-center">
             <Checkbox

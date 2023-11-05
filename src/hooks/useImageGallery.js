@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { setImageIndex, setSelectedImages } from '../store/features/imageSlice';
+import { setSelectedImages } from '../store/features/imageSlice';
+
 
 const useImageGallery = (imagesData, dispatch, arrayMove) => {
   const [images, setImages] = useState([]);
@@ -12,7 +13,6 @@ const useImageGallery = (imagesData, dispatch, arrayMove) => {
   const handleDragStart = useCallback((event) => {
     setActiveId(event.active.id);
   }, []);
-  
   const handleDragEnd = useCallback((event) => {
     const { active, over } = event;
 
@@ -35,10 +35,7 @@ const useImageGallery = (imagesData, dispatch, arrayMove) => {
     dispatch(setSelectedImages(id));
   };
 
-  const handleToggleOpen = (id) => {
-    dispatch(setImageIndex(id));
-    dispatch(open());
-  };
+
 
   console.log('[useImageGallery]', images);
   return {
@@ -47,7 +44,6 @@ const useImageGallery = (imagesData, dispatch, arrayMove) => {
     handleDragEnd,
     handleDragCancel,
     handleImageSelection,
-    handleToggleOpen,
   };
 };
 

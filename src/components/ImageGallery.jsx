@@ -13,23 +13,30 @@ import {
 } from '@dnd-kit/sortable';
 import { useDispatch, useSelector } from 'react-redux';
 import useImageGallery from '../hooks/useImageGallery';
+import { setImageIndex } from '../store/features/imageSlice';
+import { open } from '../store/features/toggleSlice';
 import Grid from './Grid';
 import SortableImage from './SortableImage';
 
 const ImageGallery = () => {
-  const imagesData = useSelector((state) => state.image.images);
+  const images = useSelector((state) => state.image.images);
   const dispatch = useDispatch();
-  
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   const {
-    images,
+    images: items,
     handleDragStart,
     handleDragEnd,
     handleDragCancel,
     handleImageSelection,
-    handleToggleOpen,
-  } = useImageGallery(imagesData, dispatch, arrayMove);
+  } = useImageGallery(images, dispatch, arrayMove);
+
+  const handleToggleOpen = (id) => {
+    dispatch(open());
+    dispatch(setImageIndex(id));
+  };
+
+
 
   return (
     <DndContext
@@ -41,7 +48,7 @@ const ImageGallery = () => {
     >
       <SortableContext items={images} strategy={rectSortingStrategy}>
         <Grid>
-          {images.map((image, index) => (
+          {items.map((image, index) => (
             <SortableImage
               key={image}
               url={image}

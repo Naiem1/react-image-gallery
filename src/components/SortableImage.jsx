@@ -17,7 +17,6 @@ const SortableImage = (props) => {
     transition: transition,
   };
 
-
   return (
     <ImageItem
       ref={setNodeRef}
