@@ -5,6 +5,7 @@ import {
   deleteImages,
 } from '../../store/features/imageSlice';
 import Checkbox from '../shared/Checkbox';
+import Backdrop from '../shared/UI/Backdrop';
 
 const Header = () => {
   const selectedImages = useSelector((state) => state.image.selectedImages);
@@ -35,7 +36,7 @@ const Header = () => {
           </div>
         )}
       </div>
-
+<Backdrop/>
       {selectedImages.length > 0 ? (
         <button
           onClick={onDeleteImageHandler}

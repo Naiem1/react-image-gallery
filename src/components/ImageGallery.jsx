@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedImages } from '../store/features/imageSlice';
 import Grid from './Grid';
 import SortableItem from './SortableItem';
+import { open, toggleState } from '../store/features/toggleSlice';
 
 const ImageGallery = () => {
   const images = useSelector((state) => state.image.images);
@@ -55,7 +56,15 @@ const ImageGallery = () => {
     dispatch(setSelectedImages(id));
   };
 
-  console.log(items);
+
+  const toggleOpen = useSelector(state => state.toggle);
+
+  const handleToggleOpen = (id) => {
+    dispatch(open())
+  }
+
+  console.log(toggleOpen);
+
 
   return (
     <DndContext
@@ -74,6 +83,7 @@ const ImageGallery = () => {
               id={image}
               index={index}
               handleImageSelection={handleImageSelection}
+              handleToggleOpen={handleToggleOpen}
             />
           ))}
         </Grid>
