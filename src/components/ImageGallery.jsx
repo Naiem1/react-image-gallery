@@ -76,7 +76,7 @@ const ImageGallery = () => {
       onDragCancel={handleDragCancel}
     >
       <SortableContext items={items} strategy={rectSortingStrategy}>
-        <Grid columns={5}>
+        <Grid>
           {items.map((image, index) => (
             <SortableItem
               key={image}
