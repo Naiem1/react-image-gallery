@@ -1,5 +1,6 @@
 import {
   DndContext,
+  DragOverlay,
   MouseSensor,
   TouchSensor,
   closestCenter,
@@ -17,6 +18,7 @@ import { setImageIndex } from '../store/features/imageSlice';
 import { open } from '../store/features/toggleSlice';
 import Grid from './Grid';
 import SortableImage from './SortableImage';
+import ImageItem from './ImageItem';
 
 const ImageGallery = () => {
   const images = useSelector((state) => state.image.images);
@@ -36,8 +38,6 @@ const ImageGallery = () => {
     dispatch(setImageIndex(id));
   };
 
-
-
   return (
     <DndContext
       sensors={sensors}
@@ -46,7 +46,7 @@ const ImageGallery = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <SortableContext items={images} strategy={rectSortingStrategy}>
+      <SortableContext items={items} strategy={rectSortingStrategy}>
         <Grid>
           {items.map((image, index) => (
             <SortableImage

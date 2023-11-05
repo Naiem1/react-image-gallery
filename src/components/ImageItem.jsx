@@ -9,10 +9,10 @@ const ImageItem = forwardRef(
   (
     {
       id,
+      withOpacity,
       handleImageSelection,
       handleToggleOpen,
       url,
-      withOpacity,
       style,
       index,
       ...props

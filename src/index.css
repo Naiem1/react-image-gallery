@@ -5,6 +5,12 @@
 
 
 @layer base {
+  .app {
+    @apply h-[100vh] bg-[#EDF1F7] grid place-items-center
+  }
+  .gallery {
+    @apply h-[88vh] w-full bg-white shadow-md overflow-auto rounded-bl-lg rounded-br-lg
+  }
   .prev {
     @apply text-[50px]  fixed text-black top-1/2 cursor-pointer right-2 rotate-180 hover:opacity-70 
   }
@@ -14,5 +20,6 @@
   .header {
     @apply h-[10px] bg-base-100  border border-b-gray-300  rounded-tl-lg rounded-tr-lg
   }
+
  
 }
