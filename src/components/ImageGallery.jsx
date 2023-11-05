@@ -11,18 +11,20 @@ import {
   arrayMove,
   rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedImages } from '../store/features/imageSlice';
 import Grid from './Grid';
 import SortableItem from './SortableItem';
-import { setSelectedImages } from '../store/features/imageSlice';
 
 const ImageGallery = () => {
   const images = useSelector((state) => state.image.images);
-  const [items, setItems] = useState([...images]);
+  const [items, setItems] = useState([]);
   const dispatch = useDispatch();
 
-  const selectedImages = useSelector(state => state.image.selectedImages);
+  useEffect(() => {
+    setItems([...images]);
+  }, [images]);
 
   const [activeId, setActiveId] = useState(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
@@ -49,13 +51,12 @@ const ImageGallery = () => {
   }, []);
 
   const handleImageSelection = (id) => {
-    console.log('inside-handler', id)
+    console.log('inside-handler', id);
     dispatch(setSelectedImages(id));
   };
 
-  
-  console.log(selectedImages);
-  
+  console.log(items);
+
   return (
     <DndContext
       sensors={sensors}

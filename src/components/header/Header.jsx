@@ -1,9 +1,24 @@
 import { MdDelete } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  clearSelectedImages,
+  deleteImages,
+} from '../../store/features/imageSlice';
 import Checkbox from '../shared/Checkbox';
 
 const Header = () => {
   const selectedImages = useSelector((state) => state.image.selectedImages);
+  const dispatch = useDispatch();
+
+  const onDeleteImageHandler = () => {
+    console.log('deleted');
+    dispatch(deleteImages());
+    dispatch(clearSelectedImages());
+  };
+
+  const clearSelectedHandler = () => {
+    dispatch(clearSelectedImages())
+  }
 
   console.log('[Header.js]', selectedImages);
   return (
@@ -12,10 +27,9 @@ const Header = () => {
         <a className="btn btn-ghost normal-case text-xl">Gallery</a>
 
         {selectedImages.length > 0 && (
-          <div className='flex items-center'>
-            <Checkbox />
+          <div className="flex items-center">
+              <Checkbox checked={selectedImages.length > 0 ? 'checked': null} onChange={clearSelectedHandler} />
             <h4 className="text-lg font-bold">
-      
               {selectedImages.length} File selected
             </h4>
           </div>
@@ -23,7 +37,10 @@ const Header = () => {
       </div>
 
       {selectedImages.length > 0 ? (
-        <button className="btn btn-outline btn-error btn-xs sm:btn-sm md:btn-md">
+        <button
+          onClick={onDeleteImageHandler}
+          className="btn btn-outline btn-error btn-xs sm:btn-sm md:btn-md"
+        >
           Delete
           <span className="text-xl">
             <MdDelete />
