@@ -16,7 +16,7 @@ const imageSlice = createSlice({
     setImages: (state, action) => {
       state.images = action.payload
     },
-    deleteImages: (state) => {
+    deleteImages: (state, action) => {
       state.images = state.images.filter(
         (image) => !state.selectedImages.includes(image)
       );
