@@ -1,13 +1,16 @@
-import Header from "../components/header/Header"
-import Gallery from "./Gallery"
+import { useState } from 'react';
+import Header from '../components/header/Header';
+import Gallery from './Gallery';
 
 const Home = () => {
+  
+
   return (
     <div className="w-[97%]">
       <Header />
-      <Gallery/>
+      <Gallery />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

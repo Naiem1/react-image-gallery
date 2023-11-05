@@ -17,6 +17,7 @@ const SortableItem = (props) => {
     transition: transition,
   };
 
+
   return (
     <Item
       ref={setNodeRef}

@@ -2,10 +2,11 @@ import { forwardRef } from 'react';
 import { HiViewfinderCircle } from 'react-icons/hi2';
 import './../styles.css';
 import Checkbox from './shared/Checkbox';
+import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/display-name
 const Item = forwardRef(
-  ({ id, withOpacity, isDragging, url, style, index, ...props }, ref) => {
+  ({ id, handleImageSelection, withOpacity, isDragging, url, style, index, ...props }, ref) => {
     const inlineStyles = {
       transformationOrigin: '0, 0',
       height: index === 0 ? 410 : 200,
@@ -21,6 +22,8 @@ const Item = forwardRef(
       zIndex: 100,
       ...style,
     };
+
+    const selectedImages = useSelector(state => state.image.selectedImages);
 
     return (
       <div style={inlineStyles} className="image-container">
@@ -41,7 +44,12 @@ const Item = forwardRef(
           }}
           className="checkbox-input"
         >
-          <Checkbox className="bg-white" onChange={() => console.log(index)} />
+          <Checkbox
+            className="bg-white"
+            checked={selectedImages.includes(id)}
+            onChange={() => handleImageSelection(id)}
+          />
+
         </div>
         <div
           style={{
@@ -51,10 +59,13 @@ const Item = forwardRef(
             top: '0',
             right: '0',
             fontSize: '25px',
-            padding: '5px'
+            padding: '5px',
           }}
         >
-          <button className="btn btn-sm icon-btn show-image" onClick={() => alert('done')}>
+          <button
+            className="btn btn-sm icon-btn show-image"
+            onClick={() => alert('done')}
+          >
             <HiViewfinderCircle />
           </button>
         </div>
