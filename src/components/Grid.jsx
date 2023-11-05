@@ -1,12 +1,7 @@
-const Grid = ({ children, columns }) => {
+const Grid = ({ children }) => {
   return (
     <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
-        gridGap: 10,
-        padding: 10,
-      }}
+      className="grid grid-cols-2  md:grid-cols-4 lg:grid-cols-5 gap-3 p-4"
     >
       {children}
     </div>

@@ -11,8 +11,6 @@ const Item = forwardRef(
       id,
       handleImageSelection,
       handleToggleOpen,
-      withOpacity,
-      isDragging,
       url,
       style,
       index,
@@ -43,8 +41,7 @@ const Item = forwardRef(
         <div
           ref={ref}
           {...props}
-          style={{ width: '100%', height: '100%' }}
-          className={`image ${
+          className={`image  width: '100%', height: '100%' ${
             selectedImages.includes(id) ? 'checked-overlay' : null
           }`}
         ></div>
